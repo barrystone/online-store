@@ -1,1 +1,6 @@
-3
+3 6 do
+
+// Warning
+
+in frontend/src/component/ProductScreen.js (problem from ./Rating.js)
+   value: ProTypes.number.isRequired is undefined, but ProTypes.number work!
