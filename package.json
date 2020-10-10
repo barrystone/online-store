@@ -1,5 +1,6 @@
 {
   "name": "proshop",
+  "type": "module",
   "version": "1.0.0",
   "description": "MERN stack product shop",
   "main": "server.js",
