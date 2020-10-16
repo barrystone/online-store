@@ -1,8 +1,15 @@
+// Added {"type": "module"} in package.json, so we can use import for ES module
+// js files should add (.js)
 import express from 'express'
 import dotenv from 'dotenv'
-import products from './data/products.js'
+import colors from 'colors'
+import ConnectDB from './config/db.js'
+import productRoutes from './routes/productRoutes.js'
+import { notFound, errorHanlder } from './middleware/errorMiddleware.js'
 
 dotenv.config()
+
+ConnectDB()
 
 const app = express()
 
@@ -10,20 +17,17 @@ app.get('/', (req, res) => {
   res.send('API is running ...')
 })
 
-app.get('/api/products', (req, res) => {
-  res.json(products)
-})
+app.use('/api/products', productRoutes)
 
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find((p) => p._id === req.params.id)
-  res.json(product)
-})
+app.use(notFound)
+
+app.use(errorHanlder)
 
 const PORT = process.env.PORT || 5000
 
 app.listen(
-  5000,
+  PORT,
   console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`
+    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
   )
 )
