@@ -1,6 +1,21 @@
-5
+6
 
 // Warning
 
 in frontend/src/component/ProductScreen.js (problem from ./Rating.js)
    value: ProTypes.number.isRequired is undefined, but ProTypes.number work!
+
+// Confusing but no problem
+
+in frontend/src/reducers/productReducers.js  productDetailsReducer
+   if don't return ...state in [case PRODUCT_DETAILS_REQUEST:], will be break(testing by myself)
+   actually, I don't fully understand why... 
+   and the next two unneeded( [case PRODUCT_DETAILS_SUCCESS:] and [case PRODUCT_DETAILS_FAIL:] )
+   , that confusing me.
+
+   (1) it's because Continuity?? [PRODUCT_DETAILS_REQUEST] action dispatch before the next two action
+      (changing sequence, the problem still exists)
+
+   (2) or just all of the reducers should at least return something (state is default content)
+
+   option (2) I think is the answer.
