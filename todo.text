@@ -1,21 +1,43 @@
-6
+7
+
+// fixed by myself (not surely)
+   in frontend/src/actions/cartActions.js
+      actions of removeFromCart add [async] before dispatch, video don't
+   
+   in frontend/src/screen/CartScreen.js
+      given each item a key for their id(item.product) 
+
+// fixed former bug
+   in backend/models/productModel.js 
+      model of productSchema {countInStuck => countInStock}
+      reupload the data.
+
+   productAction.js => productActions.js
 
 // Warning
 
-in frontend/src/component/ProductScreen.js (problem from ./Rating.js)
-   value: ProTypes.number.isRequired is undefined, but ProTypes.number work!
+   !!fixed
+   in frontend/src/screen/ProductScreen.js (problem from ./Rating.js)
+      value: ProTypes.number.isRequired is undefined, but ProTypes.number work!
 
 // Confusing but no problem
 
-in frontend/src/reducers/productReducers.js  productDetailsReducer
-   if don't return ...state in [case PRODUCT_DETAILS_REQUEST:], will be break(testing by myself)
-   actually, I don't fully understand why... 
-   and the next two unneeded( [case PRODUCT_DETAILS_SUCCESS:] and [case PRODUCT_DETAILS_FAIL:] )
-   , that confusing me.
+   in frontend/src/reducers/productReducers.js  productDetailsReducer
+      if don't return ...state in [case PRODUCT_DETAILS_REQUEST:], will be break(testing by myself)
+      actually, I don't fully understand why... 
+      and the next two unneeded( [case PRODUCT_DETAILS_SUCCESS:] and [case PRODUCT_DETAILS_FAIL:] )
+      , that confusing me.
 
-   (1) it's because Continuity?? [PRODUCT_DETAILS_REQUEST] action dispatch before the next two action
-      (changing sequence, the problem still exists)
+      (1) it's because Continuity?? [PRODUCT_DETAILS_REQUEST] action dispatch before the next two action
+         (changing sequence, the problem still exists)
 
-   (2) or just all of the reducers should at least return something (state is default content)
+      (2) or just all of the reducers should at least return something (state is default content)
 
-   option (2) I think is the answer.
+      option (2) I think is the answer.
+
+// learing JS method
+
+   in frontend/src/screen/CartScreen.js 
+       [...Array(item.countInStock).keys()]     [ [...Array( ).keys()] ] to get key of array 
+      cartItems.reduce( (acc,curItem) => acc + curItem.qty, 0 )   [ reduce(acc,cur)=>   ] function to accumulator total of qty
+      toFixed(2)     to two decimal(小數)
