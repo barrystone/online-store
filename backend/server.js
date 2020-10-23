@@ -3,21 +3,28 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
-import ConnectDB from './config/db.js'
-import productRoutes from './routes/productRoutes.js'
 import { notFound, errorHanlder } from './middleware/errorMiddleware.js'
+import connectDB from './config/db.js'
+
+import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 
-ConnectDB()
+connectDB()
 
 const app = express()
+
+// have to just add this middleware in order to for request body actually parse
+// allow us to accept JSON dat in the body
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('API is running ...')
 })
 
 app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(notFound)
 
