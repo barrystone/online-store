@@ -1,18 +1,21 @@
-8
+9
+
+// Problem 
+   in backend/controllers/userController.js  updateUserProfile
+      do not have check format for update data (ex: email) 
+
+// Protential problem (i am thinking)
+
+   in frontend/src/actions/userActions.js  logout
+      before dispatch don't have [async]
 
 // fixed by myself (not surely)
+
    in frontend/src/actions/cartActions.js
       actions of removeFromCart add [async] before dispatch, video don't
    
    in frontend/src/screen/CartScreen.js
       given each item a key for their id(item.product) 
-
-// fixed former bug
-   in backend/models/productModel.js 
-      model of productSchema {countInStuck => countInStock}
-      reupload the data.
-
-   productAction.js => productActions.js
 
 // Warning
 
