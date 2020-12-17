@@ -1,8 +1,12 @@
-9
+10
 
 // Problem 
    in backend/controllers/userController.js  updateUserProfile
       do not have check format for update data (ex: email) 
+
+   in frontend/src/screen/PlaceOrderScreen.js and  frontend/src/reducers/productReducers.js orderCreateReducer
+      after first time clicking Place Order button send the data and set orderCreateReducer orderCreate state,
+      can't remove it (should be able to Place the new Order,but data/orderCreate still here.)
 
 // Protential problem (i am thinking)
 
